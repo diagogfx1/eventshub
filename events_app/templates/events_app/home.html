@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from themeim.com/demo/senatory/index-02.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Nov 2023 17:39:45 GMT -->
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+  <title>EventsHub</title>
+  <!-- favicon -->
+  {% block title %}
+
+  {% endblock %}
+  <!-- favicon -->
+  {% load static %}
+  <link rel="icon" href="{% static 'img/favicon.png' %}" sizes="20x20" type="image/png" />
+  <!-- animate -->
+  <link rel="stylesheet" href="{% static 'css/animate.css' %}" />
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+  <!-- magnific popup -->
+  <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}"/>
+  <!-- owl carousel -->
+  <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"/>
+  <!-- fontawesome -->
+  <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+  <!-- iconmoon -->
+  <link rel="stylesheet" href="{% static 'css/iconmoon.css' %}">
+  <!-- Hover CSS -->
+  <link rel="stylesheet" href="{% static 'css/hover-min.css' %}"/>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+  <!-- responsive Stylesheet -->
+  <link rel="stylesheet" href="{% static 'css/responsive.css' %}"/>
+  {% block styles %}
+  {% endblock %}
+</head>
+
+<body>
+  
+  <div class="header-style-01">
+    <!-- support bar area end -->
+    <nav class="navbar navbar-area style-01 navbar-expand-lg nav-style-02">
+      <div class="container nav-container">
+        <div class="responsive-mobile-menu">
+          <div class="logo-wrapper">
+            <a href="index.html" class="logo">
+              <img src="static/img/logo.png" alt="" />
+            </a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bizcoxx_main_menu"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
+          <ul class="navbar-nav political">
+            <li class="menu-item-has-children current-menu-item">
+              <a href="{% url 'index' %}">Home</a>
+              <ul class="sub-menu">
+            
+                
+              </ul>
+              <div class="line">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot style-02"></span>
+              </div>
+            </li>
+            <li class="menu-item-has-children">
+              <a href="{% url 'event-list' %}">All Events</a>
+              
+              <div class="line">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot style-02"></span>
+              </div>
+            </li>
+            <li class="menu-item-has-children">
+              <a href="#">About</a>
+              
+              <div class="line">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot style-02"></span>
+              </div>
+            </li>
+
+            <li class="menu-item-has-children">
+              <a href="#">Contact</a>
+            
+              <div class="line style-01">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot style-02"></span>
+              </div>
+            </li>
+            <li class="menu-item-has-children">
+              <a href="#0">Sign In</a>
+              
+              <div class="line">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot style-02"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-right-content style-01">
+          <div class="btn-wrapper">
+            <a href="#" class="boxed-btn political-btn">Create Event <i class="icon-paper-plan"></i></a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar area end -->
+  </div>
+  <div class="header-area header-sanatory header-bg-02" style="background-image:url(static/img/statue-liberty.png);">
+        <div class="container nav-container">
+            <div class="row">
+                <div class="col-lg-9">
+                  <div class="header-inner political">
+                    <!-- header inner -->
+                    <div class="subtitle">
+                        {% comment %} <span>since 1981</span>  {% endcomment %}
+                        {% comment %} <span class="line"></span>
+                        <span class="line-02"></span> {% endcomment %}
+                    </div>
+                    <h1 class="title">Everything you need for your next BIG event. </h1>
+                    <p>
+                      The all-in-one ticketing platform to manage all kinds of events and attendance.
+                    </p>
+                  </div>
+                    <!-- //.header inner -->
+                </div>
+            </div>
+        </div>
+  </div>
+    <!-- Header section End -->
+
+
+
+    {% block content %}
+
+    {% comment %} page title {% endcomment %}
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-9">
+        <div class="section-title">
+          <div class="subtitle wow animate__animated animate__fadeInUp">
+          </div>
+          <h4 class="title wow animate__animated animate__fadeInUp"> </h4>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section-title">
+          <div class="subtitle wow animate__animated animate__fadeInUp">
+            <div class="icon">
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+            </div>
+            <p>View</p>
+            <div class="icon">
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+              <span class="icon-star"></span>
+            </div>
+          </div>
+          <h4 class="title wow animate__animated animate__fadeInUp">Latest Events</h4>
+        </div>
+      </div>
+    </div>
+    <!-- Event items Section Start Here -->
+    <div class="issues-around-us-section home-six">
+        <div class="container">
+            <div class="row">
+                {% for event in events %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="event-single-items style-02">
+                        <div class="event-img" style="background-image: url({{ event.image.url }});"></div>
+                        <div class="content home-six">
+                            <div class="post-mate style-02">
+                                <h2 class="post-date">{{ event.date|date:"d" }}</h2>
+                                <div class="post-month">{{ event.date|date:"M" }}</div>
+                            </div>
+                            <div class="subtitle">
+                                <div class="location">
+                                    <div class="icon">
+                                        <i class="icon-location"></i>
+                                    </div>
+                                    <p>{{ event.location }}</p>
+                                </div>
+                                <div class="time">
+                                    <div class="icon">
+                                        <i class="icon-clock"></i>
+                                    </div>
+                                    <p>{{ event.date|time:"g:i A" }}</p>
+                                </div>
+                            </div>
+                            <h4 class="title"><a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a></h4>
+                            <div class="btn-wrapper">
+                                <a href="{% url 'event-detail' event.pk %}" class="boxed-btn event-btn"><i class="fas fa-arrow-right"></i>View Event</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- Pagination, if needed -->
+            <!-- ... -->
+        </div>
+    </div>
+    <!-- Event Items Section Start Here -->
+    
+    
+    {% endblock %}
+
+
+
+  
+  <!-- footer area start -->
+  <footer class="footer-area" style="background-image: url(static/img/footer-bg-02.png);">
+    <div class="footer-top style-02">
+      <div class="container">
+        <div class="footer-top-border padding-bottom-35">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="footer-widget widget widget_subscribe political"
+              style="background-image: url(static/img/footer-bg.png);">
+                  <div class="shape-03"></div>
+                  <div class="header-content style-01">
+                      <h4 class="title style-01">Would you like to host your events?</h4>
+                      <div class="btn-wrapper desktop-center">
+                        <a href="contact.html" class="boxed-btn political-btn style-01">SIGNUP NOW<i class="fas fa-paper-plane"></i></a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-widget widget">
+                <div class="about_us_widget wow animate__animated animate__fadeInUp">
+                  <a href="index.html" class="footer-logo"> <img src="static/img/footer-logo.png" alt="footer logo"></a>
+                  <p>The all-in-one ticketing platform to manage all kinds of events and attendance.
+                  </p>
+                    <div class="social-links">
+                      <a href="#"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#"><i class="fab fa-twitter"></i></a>
+                      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                      <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                <h4 class="widget-title">
+                  Contact
+                  <span class="line">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot style-02"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </span>
+                </h4>
+                <ul class="contact_info_list style-01 margin-bottom-50">
+                  <li class="single-info-item">
+                    <div class="icon style-01">
+                      <i class="icon-location"></i>
+                    </div>
+                    <div class="details style-01">
+                      McCarthy Hills, Weija, Accra
+                    </div>
+                  </li>
+                  <li class="single-info-item">
+                    <div class="icon">
+                      <i class="icon-envelope"></i>
+                    </div>
+                    <div class="details">
+                      <a href="https://themeim.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="99f0f7fff6d9e0f6ecebf4f8f0f5b7faf6f4">info@eventshungh.com</a>
+                    </div>
+                  </li>
+                  <li class="single-info-item">
+                    <div class="icon">
+                      <i class="icon-phone"></i>
+                    </div>
+                    <div class="details">
+                      0547264034
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            {% comment %} <div class="col-lg-1 col-md-6 col-sm-6 col-6">
+              <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                <h4 class="widget-title">
+                  Explore
+                  <span class="line">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot style-02"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </span>
+                </h4>
+                <ul>
+                  <li><a href="#">Our Story</a></li>
+                  <li><a href="#">Team</a></li>
+                  <li><a href="#">News</a></li>
+                  <li><a href="#">Election</a></li>
+                </ul>
+              </div>
+            </div> {% endcomment %}
+            <div class="col-lg-3 col-md-6 col-sm-6 col-6">
+              <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                <h4 class="widget-title">
+                  Useful Links
+                  <span class="line">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot style-02"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </span>
+                </h4>
+                <ul>
+                  <li><a href="#">Privacy Policy</a></li>
+                  <li><a href="#">Terms and Conditions</a></li>
+                  <li><a href="#">Support</a></li>
+                  <li><a href="#">FAQ</a></li>
+                </ul>
+              </div>
+            </div>
+            {% comment %} <div class="col-lg-2 col-md-6 col-sm-6 col-6">
+              <div class="footer-widget widget widget_nav_menu wow animate__animated animate__fadeInUp">
+                <h4 class="widget-title">
+                  Quick Links
+                  <span class="line">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot style-02"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                  </span>
+                </h4>
+                <ul>
+                  <li><a href="#">About Us</a></li>
+                  <li><a href="#">Services</a></li>
+                  <li><a href="#">Contact</a></li>
+                  <li><a href="#">News</a></li>
+                </ul>
+              </div>
+            </div> {% endcomment %}
+          </div>
+        </div>
+        <div class="copyright-area">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="copyright-area-inner">
+                  Copyright © 2022 EventsHub. All Rights Reserved. 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer area end -->
+  
+  <!-- back to top area start -->
+  <div class="back-to-top">
+    <span class="back-top"><i class="fa fa-angle-up"></i></span>
+  </div>
+  <!-- back to top area end -->
+
+  <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="static/js/jquery-2.2.4.min.js"></script>
+  <!-- bootstrap -->
+  <script src="static/js/bootstrap.min.js"></script>
+  <!-- magnific popup -->
+  <script src="static/js/jquery.magnific-popup.js"></script>
+  <!-- wow -->
+  <script src="static/js/wow.min.js"></script>
+  <!-- owl carousel -->
+  <script src="static/js/owl.carousel.min.js"></script>
+  <!-- waypoint -->
+  <script src="static/js/waypoints.min.js"></script>
+  <!-- Mail Validation -->
+  <script src="static/js/mail-validation.js"></script>
+  <!-- Contact js -->
+  <script src="static/js/contact.js"></script>
+  <!-- counterup -->
+  <script src="static/js/jquery.counterup.min.js"></script>
+  <!-- countdown -->
+  <script src="static/js/jquery.countdown.min.js"></script>
+  <!-- VanillaTilt effect -->
+  <script src="static/js/tilt.jquery.js"></script>
+  <!-- imageloaded -->
+  <script src="static/js/imagesloaded.pkgd.min.js"></script>
+  <!-- isotope -->
+  <script src="static/js/isotope.pkgd.min.js"></script>
+  <!-- main js -->
+  <script src="static/js/main.js"></script>
+</body>
+
+
+<!-- Mirrored from themeim.com/demo/senatory/index-02.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 01 Nov 2023 17:39:55 GMT -->
+</html>
+
+
+
+
+
+{% load static %}
+

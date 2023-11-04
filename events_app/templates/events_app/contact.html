@@ -1,0 +1,133 @@
+{% extends 'events_app/base.html' %}
+{% load static %}
+
+{% block content %}
+{% comment %} page title {% endcomment %}
+
+<div class="row justify-content-center">
+    <div class="col-lg-6 col-md-9">
+      <div class="section-title">
+        <div class="subtitle wow animate__animated animate__fadeInUp">
+        </div>
+        <h4 class="title wow animate__animated animate__fadeInUp"> </h4>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="section-title">
+        <div class="subtitle wow animate__animated animate__fadeInUp">
+          <div class="icon">
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+          </div>
+          <p>Get Intouch</p>
+          <div class="icon">
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+            <span class="icon-star"></span>
+          </div>
+        </div>
+        <h4 class="title wow animate__animated animate__fadeInUp">Contct Us</h4>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Help And Faq Section Start Here -->
+<hr> <hr>
+<section class="help-and-faq-section style-01 ">
+ <div class="container">
+    <div class="row">
+       <div class="col-lg-4">
+          <div class="help-single-item style-01">
+              <div class="content">
+                  <h4 class="title">Need Help?</h4>
+                  <p>We are available 24/7 to answer your questions.</p>
+              </div>
+          </div>
+          <div class="icon-box-item-02">
+             <div class="icon">
+                <i class="far fa-envelope"></i>
+             </div>
+             <div class="content">
+                <span class="title">Email</span>
+                <p><a href="https://themeim.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bdd4d3dbd2cfd0dcc9d4d2d38c8b8b8afdced8d3dcc9d2cfc493ded2d0">info@eventshub.com</a></p>
+             </div>
+          </div>
+          <div class="icon-box-item-02">
+             <div class="icon">
+                <i class="fas fa-phone-alt"></i>
+             </div>
+             <div class="content">
+                <span class="title">Phone</span>
+                <p>0547264034</p>
+             </div>
+          </div>
+          <div class="icon-box-item-02">
+             <div class="icon">
+                <i class="fas fa-map-marker-alt"></i>
+             </div>
+             <div class="content">
+                <span class="title">Location</span>
+                <p>McCarthy Hills, Weija, Accra</p>
+             </div>
+          </div>
+       </div>
+       <div class="col-lg-8">
+          <div class="contact-page-wrapper home-six">
+              <div class="contact-form">
+                <div class="content">
+                  <h6 class="title">Leave your massage here</h6>
+                </div>
+                <form action="https://themeim.com/demo/senatory/request.html" class="contact-page-form" novalidate="novalidate">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="text" name="fname" placeholder="Your Name*" class="form-control" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="email" name="lname" placeholder="Your Email*" class="form-control" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <input type="tel" name="phone" placeholder="Your Phone*" class="form-control" required="" aria-required="true">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                          <div class="form-group">
+                              <input type="text" name="fname" placeholder="Your Subject*" class="form-control" required="" aria-required="true">
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <textarea name="msg" id="msg" placeholder="Write Message" class="text-area"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="btn-wrapper">
+                            <a href="#" class="boxed-btn political-btn">Submit<i class="icon-paper-plan"></i></a>
+                          </div>
+                        </div>
+                    </div>
+                </form>
+              </div>
+          </div>
+       </div>
+    </div>
+ </div>
+</section>
+<!-- Help And Faq Section End Here -->
+
+
+
+
+
+
+
+
+{% endblock %}
