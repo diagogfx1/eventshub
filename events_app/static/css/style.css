@@ -10479,10 +10479,10 @@ input[type=checkbox] {
       -ms-flex-align: center;
           align-items: center;
   background: var(--main-color-one);
-  padding: 40px;
+  padding: 20px;
   border-radius: 10px;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 .campaign-section-area .campaign-single-items-02.style-02 {
   background: #fff;
@@ -10531,8 +10531,8 @@ input[type=checkbox] {
   border-radius: 10px;
 }
 .campaign-section-area .campaign-single-items-02 .icon {
-  width: 114px;
-  height: 114px;
+  width: 100px;
+  height: 100px;
   line-height: 114px;
   text-align: center;
   background: #fff;

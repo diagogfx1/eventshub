@@ -1,0 +1,91 @@
+{% extends 'events_app/base.html' %}
+{% load static %}
+
+{% block content %}
+{% comment %} page title {% endcomment %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-9">
+    <div class="section-title">
+      <div class="subtitle wow animate__animated animate__fadeInUp">
+      </div>
+      <h4 class="title wow animate__animated animate__fadeInUp"> </h4>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="section-title">
+      <div class="subtitle wow animate__animated animate__fadeInUp">
+        <div class="icon">
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+        </div>
+        <p>FIND EXCITING THINGS TO DO AROUND YOU </p>
+        <div class="icon">
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+        </div>
+      </div>
+      <h4 class="title wow animate__animated animate__fadeInUp">{{ category.name }}</h4>
+    </div>
+  </div>
+</div>
+{% comment %} page title {% endcomment %}
+
+<!-- Event items Section Start Here -->
+
+<div class="issues-around-us-section home-six">
+    <div class="container">
+        <div class="row">
+          {% for event in events %}
+            <div class="col-lg-4 col-md-6">
+                <div class="event-single-items style-02">
+                    <div class="event-img" style="background-image: url({{ event.image.url }});"></div>
+                    <div class="content home-six">
+                        <div class="post-mate style-02">
+                            <h2 class="post-date">{{ event.date|date:"d" }}</h2>
+                            <div class="post-month">{{ event.date|date:"M" }}</div>
+                        </div>
+                        <div class="subtitle">
+                            <div class="location">
+                                <div class="icon">
+                                    <i class="icon-location"></i>
+                                </div>
+                                <p>{{ event.location }}</p>
+                            </div>
+                            <div class="time">
+                                <div class="icon">
+                                    <i class="icon-clock"></i>
+                                </div>
+                                <p>{{ event.date|time:"g:i A" }}</p>
+                            </div>
+                        </div>
+                        <h4 class="title"><a href="{% url 'event-detail' event.pk %}">{{ event.title }}</a></h4>
+                        <div class="btn-wrapper">
+                            <a href="{% url 'event-detail' event.pk %}" class="boxed-btn event-btn"><i class="fas fa-arrow-right"></i>View Event</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                {% empty %} 
+                
+                
+          </div> 
+          <div style="text-align: center;">
+            <h4>There is no event under this category</h4>
+        </div>
+            {% endfor %}    
+        </div>
+        <!-- Pagination, if needed -->
+        <!-- ... -->
+        <div style="text-align: center;">
+          <h4><a href="{% url 'event-category-list' %}">Back to Event Categories</a></h4>
+      </div>
+    </div>
+</div>
+<!-- Event Items Section Start Here -->
+
+{% endblock %}
+

@@ -22,5 +22,7 @@ urlpatterns = [
     path('event-categories/', EventCategoryListView.as_view(), name='event-category-list'),
     path('event-regions/', EventRegionListView.as_view(), name='event-region-list'),
     path('contact/', views.contact, name='contact'),
-
+    path('event-categories/<int:category_id>/', views.events_by_category, name='events_by_category'),
+    
+    
 ]

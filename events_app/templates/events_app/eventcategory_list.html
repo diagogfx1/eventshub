@@ -1,0 +1,33 @@
+{% extends 'events_app/base.html' %}
+{% load static %}
+
+{% block content %}
+
+  <!-- Category list -->
+<div class="campaign-section-area">
+  <div class="container">
+    <div class="row">
+      {% for eventcategory in categories %}
+        <div class="col-lg-4">
+          <div class="campaign-single-items-02 wow animate__animated animate__fadeInLeft">
+            <div class="icon">
+              <i class="icon-human-right"></i>
+            </div>
+            <div class="content">
+              <div class="title-wrapper">
+                <div class="title">
+                  <h5><a href="{% url 'events_by_category' eventcategory.id %}">{{ eventcategory.name }}</a></h5>
+                </div>
+              </div>
+            </div>
+            <img src="{% static 'assets/img/setting-shape.png' %}" class="shape" alt="" />
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Category list end -->
+
+
+{% endblock %}

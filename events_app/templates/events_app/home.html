@@ -57,7 +57,7 @@
         </div>
         <div class="collapse navbar-collapse" id="bizcoxx_main_menu">
           <ul class="navbar-nav political">
-            <li class="menu-item-has-children current-menu-item">
+            <li class="menu-item-has-children current-menu-item-off">
               <a href="{% url 'index' %}">Home</a>
               <ul class="sub-menu">
             
@@ -69,7 +69,7 @@
                 <span class="dot style-02"></span>
               </div>
             </li>
-            <li class="menu-item-has-children">
+            <li class="menu-item-has-children-off">
               <a href="{% url 'event-list' %}">All Events</a>
               
               <div class="line">
@@ -78,8 +78,8 @@
                 <span class="dot style-02"></span>
               </div>
             </li>
-            <li class="menu-item-has-children">
-              <a href="#">About</a>
+            <li class="menu-item-has-children-off">
+              <a href="{% url 'event-category-list' %}">Categories</a>
               
               <div class="line">
                 <span class="dot"></span>
@@ -143,38 +143,65 @@
 
 
     {% block content %}
+<!-- Category list -->
+<div class="campaign-section-area">
+  <div class="container">
+    <div class="row">
+      {% for eventcategory in categories|slice:":3" %}
+        <div class="col-lg-4">
+          <div class="campaign-single-items-02 wow animate__animated animate__fadeInLeft">
+            <div class="icon">
+              <i class="icon-human-right"></i>
+            </div>
+            <div class="content">
+              <div class="title-wrapper">
+                <div class="title">
+                  <h5><a href="{% url 'events_by_category' eventcategory.id %}">{{ eventcategory.name }}</a></h5>
+                </div>
+              </div>
+            </div>
+            <img src="{% static 'assets/img/setting-shape.png' %}" class="shape" alt="" />
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- Category list end -->
+{% comment %} page title {% endcomment %}
+<div class="row justify-content-center">
+  <div class="col-lg-6 col-md-9">
+    <div class="section-title">
+      <div class="subtitle wow animate__animated animate__fadeInUp">
+      </div>
+      <h4 class="title wow animate__animated animate__fadeInUp"> </h4>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="section-title">
+      <div class="subtitle wow animate__animated animate__fadeInUp">
+        <div class="icon">
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+        </div>
+        <p>FIND EXCITING THINGS TO DO AROUND YOU </p>
+        <div class="icon">
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+          <span class="icon-star"></span>
+        </div>
+      </div>
+      <h4 class="title wow animate__animated animate__fadeInUp">Featured Events </h4>
+    </div>
+  </div>
+</div>
+{% comment %} page title {% endcomment %}
 
-    {% comment %} page title {% endcomment %}
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-9">
-        <div class="section-title">
-          <div class="subtitle wow animate__animated animate__fadeInUp">
-          </div>
-          <h4 class="title wow animate__animated animate__fadeInUp"> </h4>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="col-lg-6">
-        <div class="section-title">
-          <div class="subtitle wow animate__animated animate__fadeInUp">
-            <div class="icon">
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-            </div>
-            <p>View</p>
-            <div class="icon">
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-              <span class="icon-star"></span>
-            </div>
-          </div>
-          <h4 class="title wow animate__animated animate__fadeInUp">Latest Events</h4>
-        </div>
-      </div>
-    </div>
-    <!-- Event items Section Start Here -->
+<!-- Event Items Section Start Here -->
+
     <div class="issues-around-us-section home-six">
         <div class="container">
             <div class="row">
@@ -214,7 +241,7 @@
             <!-- ... -->
         </div>
     </div>
-    <!-- Event Items Section Start Here -->
+    <!-- Event Items Section end Here -->
     
     
     {% endblock %}
