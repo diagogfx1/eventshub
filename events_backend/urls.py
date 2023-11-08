@@ -37,5 +37,8 @@ urlpatterns = [
     path('categories/<int:pk>/delete/', CategoryDeleteView.as_view(), name='category-delete'),
     path('update_regions/<int:pk>/', RegionUpdateView.as_view(), name='update-regions'),
     path('regions/<int:pk>/delete/', RegionDeleteView.as_view(), name='region-delete'),
+    path("login", views.login_request, name="login"),
+    path("logout", views.logout_request, name= "logout"),
+    path("register", views.register_request, name="register"),
        
 ]
