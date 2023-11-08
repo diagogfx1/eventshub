@@ -6,6 +6,14 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
+
+
+#create events
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
+
 #Region form
 class EventRegionForm(forms.ModelForm):
     class Meta:

@@ -14,14 +14,17 @@
             <div class="row">
 
                 <!-- form start here -->
-                <div class="col-12 box-margin">
-                    <h2>Create Event</h2>
-                    <form method="post">
-                     {% csrf_token %}
-                     {% crispy form %} {# Render the form using Crispy Forms #}
-                    <button type="submit">Create Event</button>
-                    </form>
-                    
+                <h2>Create Event</h2>
+                 <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                 <button type="submit">Create Event</button>
+                 <div> &nbsp;<div>
+                 <div> &nbsp;<div>
+                   
+                </form>
+                
+    
                 </div>
                 <!-- form end here -->
             </div>

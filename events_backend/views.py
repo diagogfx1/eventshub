@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm
+from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm, EventForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, authenticate, logout 
@@ -15,6 +15,7 @@ from .forms import NewUserForm
 from django.contrib import messages
 
 # Create your views here.
+
 # Views required login
 class LoginRequiredMixin:
     @classmethod
@@ -42,18 +43,31 @@ class AllEvents(LoginRequiredMixin, ListView):
     paginate_by = 10
 
 # Event Create View
+# class EventCreateView(LoginRequiredMixin, CreateView):
+#     model = Event
+#     template_name = 'events_backend/event_form.html'
+#     fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
+#     def get_form(self, form_class=None):
+#         form = super(EventCreateView, self).get_form(form_class)
+#         helper = FormHelper()
+#         helper.form_method = 'post'
+#         helper.add_input(Submit('submit', 'Create Event'))
+#         form.helper = helper
+#         return form
+#     success_url = reverse_lazy('backend:view-events')  # Replace with the actual view name
+
+
 class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     template_name = 'events_backend/event_form.html'
-    fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
-    def get_form(self, form_class=None):
-        form = super(EventCreateView, self).get_form(form_class)
-        helper = FormHelper()
-        helper.form_method = 'post'
-        helper.add_input(Submit('submit', 'Create Event'))
-        form.helper = helper
-        return form
-    success_url = reverse_lazy('backend:view-events')  # Replace with the actual view name
+    form_class = EventForm
+    success_url = reverse_lazy('backend:view-events')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Assuming you have a user field in your model
+        return super().form_valid(form)
+
+
 
 # Event Update View
 class EventUpdateView(LoginRequiredMixin, UpdateView):

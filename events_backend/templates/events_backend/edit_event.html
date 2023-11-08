@@ -15,10 +15,12 @@
 
                 <!-- form start here -->
                 <h1>Edit Event</h1>
-                 <form method="post">
+                <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form|crispy }}  {# Render the form using Crispy Forms #}
                  <button type="submit">Update Event</button>
+                 <div> &nbsp;<div>
+                <div> &nbsp;<div>
             </form>
                 <!-- form end here -->
             </div>
