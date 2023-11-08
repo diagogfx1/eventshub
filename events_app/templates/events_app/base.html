@@ -93,7 +93,7 @@
       <div class="container nav-container">
         <div class="responsive-mobile-menu">
           <div class="logo-wrapper">
-            <a href="index.html" class="logo">
+            <a href="{% url 'index' %}" class="logo">
               <img src="/static/img/logo.png" alt="" />
             </a>
           </div>
@@ -141,7 +141,7 @@
               </div>
             </li>
             <li class="menu-item-has-children">
-              <a href="#">Sign In</a>
+              <a href="{% url 'login' %}">Sign In</a>
         
               <div class="line">
                 <span class="dot"></span>

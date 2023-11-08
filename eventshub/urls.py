@@ -23,9 +23,12 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 
+app_name = 'events_backend'  # Define the namespace for this app
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('events_app.urls')),
+    path('events_backend/', include(('events_backend.urls', 'events_backend'), namespace='backend')),
     
 ]
 ...

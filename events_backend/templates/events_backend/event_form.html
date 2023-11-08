@@ -1,0 +1,32 @@
+{% extends 'events_backend/backend_base.html' %}
+{% load static %}
+{% load crispy_forms_tags %} {# Load Crispy Forms template tags #}
+
+{% block content %}
+
+  <div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                
+            <!-- / .row -->
+
+            <div class="row">
+
+                <!-- form start here -->
+                <div class="col-12 box-margin">
+                    <h2>Create Event</h2>
+                    <form method="post">
+                     {% csrf_token %}
+                     {% crispy form %} {# Render the form using Crispy Forms #}
+                    <button type="submit">Create Event</button>
+                    </form>
+                    
+                </div>
+                <!-- form end here -->
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

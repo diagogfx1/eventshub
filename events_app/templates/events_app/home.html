@@ -46,7 +46,7 @@
       <div class="container nav-container">
         <div class="responsive-mobile-menu">
           <div class="logo-wrapper">
-            <a href="index.html" class="logo">
+            <a href="{% url 'index' %}" class="logo">
               <img src="static/img/logo.png" alt="" />
             </a>
           </div>
@@ -89,7 +89,7 @@
             </li>
 
             <li class="menu-item-has-children">
-              <a href="#">Contact</a>
+              <a href="{% url 'contact' %}">Contact</a>
             
               <div class="line style-01">
                 <span class="dot"></span>
@@ -98,7 +98,7 @@
               </div>
             </li>
             <li class="menu-item-has-children">
-              <a href="#0">Sign In</a>
+              <a href="{% url 'login' %}">Sign In</a>
               
               <div class="line">
                 <span class="dot"></span>
@@ -139,10 +139,13 @@
         </div>
   </div>
     <!-- Header section End -->
+  {% comment %} brands logo here {% endcomment %}
+    <div class="js-marquee" style="margin-right: 0px; float: left;">
+      <img align="center" alt="Some brands that trust eGotickets" width="2000" hieght="100px" src="https://assets.egotickets.com/assets/clients-166631c44b11b82baba7d8b0cf402c8b16f59da377c83a53f6e20e7e6813e7eb.jpg">
+    </div>
+  {% comment %} brands logo here  {% endcomment %}
 
-
-
-    {% block content %}
+{% block content %}
 <!-- Category list -->
 <div class="campaign-section-area">
   <div class="container">

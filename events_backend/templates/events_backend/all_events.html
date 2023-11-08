@@ -1,0 +1,79 @@
+<!-- events_list.html -->
+
+{% extends 'events_backend/backend_base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="main-panel">
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- / .row -->
+
+          <div class="row">
+            <!-- Order Summary Area -->
+            <div class="col-12 box-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h6 class="card-title">All Events</h6>
+                  <!-- Table -->
+                  <div class="table-responsive">
+                    <table class="table table-nowrap">
+                      <thead>
+                        <tr>
+                          <th>Name</th>
+                          <th>Category</th>
+                          <th>Region</th>
+                          <th>Date</th>
+                          <th>Status</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for event in events %}
+                        <tr>
+                          <th scope="row">
+                            <button type="button" class="btn btn-sm btn-secondary btn-icon rounded-pill">
+                              <span class="btn-inner--icon"><i class="fa fa-book"></i></span>
+                              <span class="btn-inner--text">{{ event.title }}</span>
+                            </button>
+                          </th>
+                          <td class="order">
+                            <span class="d-block font-13">{{ event.category }}</span>
+                          </td>
+                          <td>
+                            <span class="client">{{ event.Region }}</span>
+                          </td>
+                          <td>{{ event.date }}</td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                              <button type="button" class="btn btn-rounded btn-outline-success">
+                                <span class="btn-inner--text">{{ event.status }}</span>
+                              </button>
+                              <!-- Actions -->
+                              <div class="actions ml-3">
+                                <a href="{% url 'backend:update-event' pk=event.pk %}" class="action-item mr-2"
+                                  data-bs-toggle="tooltip" title="" data-original-title="Edit">
+                                  <i class="fa fa-pencil"></i>
+                                </a>
+                                <a href="{% url 'backend:event-delete' pk=event.pk %}" class="action-item mr-2" data-bs-toggle="tooltip" title=""
+                                  data-original-title="Archive">
+                                  <i class="fa fa-archive"></i>
+                                </a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -19,6 +19,7 @@ class Event(models.Model):
         ('draft', 'Draft'),
         ('published', 'Published'),
         ('canceled', 'Canceled'),
+        ('featured', 'featured'),
     )
 
     title = models.CharField(max_length=200)
