@@ -60,12 +60,12 @@
                                                     </button> {% endcomment %}
                                                     <!-- Actions -->
                                                     <div class="actions ml-3">
-                                                        <a href="#" class="action-item mr-2"
+                                                        <a href="{% url 'backend:update-category' pk=category.pk %}" class="action-item mr-2"
                                                             data-bs-toggle="tooltip" title=""
                                                             data-original-title="Edit">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <a href="#" class="action-item mr-2"
+                                                        <a href="{% url 'backend:category-delete' pk=category.pk %}" class="action-item mr-2"
                                                             data-bs-toggle="tooltip" title=""
                                                             data-original-title="Archive">
                                                             <i class="fa fa-archive"></i>

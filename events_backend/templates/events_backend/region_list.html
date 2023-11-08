@@ -60,12 +60,12 @@
                                                     </button> {% endcomment %}
                                                     <!-- Actions -->
                                                     <div class="actions ml-3">
-                                                        <a href="#" class="action-item mr-2"
+                                                        <a href="{% url 'backend:update-regions' pk=eventregion.pk %}" class="action-item mr-2"
                                                             data-bs-toggle="tooltip" title=""
                                                             data-original-title="Edit">
                                                             <i class="fa fa-pencil"></i>
                                                         </a>
-                                                        <a href="#" class="action-item mr-2"
+                                                        <a href="{% url 'backend:region-delete' pk=eventregion.pk %}" class="action-item mr-2"
                                                             data-bs-toggle="tooltip" title=""
                                                             data-original-title="Archive">
                                                             <i class="fa fa-archive"></i>

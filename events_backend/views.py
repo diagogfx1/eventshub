@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm
+from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -50,13 +50,42 @@ class EventUpdateView(UpdateView):
     success_url = reverse_lazy('backend:home')  # Replace with the URL where you want to redirect after updating
     
     
+# Categorry Update View
+class CategoryUpdateView(UpdateView):
+    model = EventCategory
+    template_name = 'events_backend/edit_category.html'
+    form_class = CategoryUpdateForm  
+    success_url = reverse_lazy('backend:view-categories')  
+    
+# Region Update View
+class RegionUpdateView(UpdateView):
+    model = EventCategory
+    template_name = 'events_backend/edit_region.html'
+    form_class = RegionUpdateForm  
+    success_url = reverse_lazy('backend:view-region')  
+    
+    
     
 
 # Event Delete View
 class EventDeleteView(DeleteView):
     model = Event
     template_name = 'events_backend/delete_event.html'
-    success_url = reverse_lazy('backend:view-events')
+    success_url = reverse_lazy('backend:view-categories')
+    
+    
+# Category Delete View
+class CategoryDeleteView(DeleteView):
+    model = EventCategory
+    template_name = 'events_backend/delete_category.html'
+    success_url = reverse_lazy('backend:view-categories')
+    
+    
+# Region Delete View
+class RegionDeleteView(DeleteView):
+    model = EventRegion
+    template_name = 'events_backend/delete_region.html'
+    success_url = reverse_lazy('backend:view-region')
     
 # Event Region List View
 class EventRegionListView(ListView):
@@ -71,6 +100,8 @@ class EventRegionListView(ListView):
 #     template_name = 'events_backend/category_list.html'
 #     context_object_name = 'categorys'
 
+
+# Event Category List View
 def category_list(request):
     categories = EventCategory.objects.all()
     context = {
@@ -85,7 +116,7 @@ def create_region(request):
         form = EventRegionForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('backend:home'))  # Redirect to the region list view
+            return redirect(reverse('backend:view-region'))  # Redirect to the region list view
     else:
         form = EventRegionForm()
     return render(request, 'events_backend/region_form.html', {'form': form})
@@ -97,7 +128,7 @@ def create_category(request):
         form = EventCategoryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(reverse('backend:dashboard'))   # Redirect to the region list view  # Redirect to the region list view
+            return redirect(reverse('backend:view-categories'))   # Redirect to the region list view  # Redirect to the region list view
     else:
         form = EventCategoryForm()
     return render(request, 'events_backend/category_form.html', {'form': form})

@@ -15,12 +15,12 @@
                                 <div class="col">
                                     <!-- Title -->
                                     <h6 class="text-uppercase font-14">
-                                        Budget
+                                        Total Events
                                     </h6>
 
                                     <!-- Heading -->
                                     <span class="font-24 text-dark mb-0">
-                                        $2500
+                                        12
                                     </span>
                                 </div>
 
@@ -43,11 +43,11 @@
                                 <div class="col">
                                     <!-- Title -->
                                     <h6 class="font-14 text-uppercase">
-                                        Total Hours
+                                        Total Regions
                                     </h6>
                                     <!-- Heading -->
                                     <span class="font-24 text-dark mb-0">
-                                        663.5
+                                        6
                                     </span>
                                 </div>
                                 <div class="col-auto">
@@ -69,13 +69,13 @@
                                 <div class="col">
                                     <!-- Title -->
                                     <h6 class="font-14 text-uppercase">
-                                        Progress
+                                        Registerd Users
                                     </h6>
                                     <div class="row align-items-center no-gutters">
                                         <div class="col-auto">
                                             <!-- Heading -->
                                             <span class="font-24 text-dark mr-2">
-                                                84.5%
+                                                2
                                             </span>
                                         </div>
                                         <div class="col">
@@ -108,11 +108,11 @@
                                 <div class="col">
                                     <!-- Title -->
                                     <h6 class="font-14 text-uppercase">
-                                        Cost/Unit
+                                        Featured Events
                                     </h6>
                                     <!-- Heading -->
                                     <span class="font-24 text-dark">
-                                        $7.50
+                                        3
                                     </span>
                                 </div>
                                 <div class="col-auto">
@@ -135,7 +135,7 @@
 
                     <div class="card">
                         <div class="card-body">
-                            <h6 class="card-title">All Events</h6>
+                            <h6 class="card-title">Current Events Published</h6>
                             <!-- Table -->
                             <div class="table-responsive">
                                 <table class="table table-nowrap">
@@ -145,7 +145,7 @@
                                             <th>Category</th>
                                             <th>Region</th>
                                             <th>Date</th>
-                                            <th>Status</th>
+                                            {% comment %} <th>Status</th> {% endcomment %}
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -170,7 +170,7 @@
                                             </td>
                                             <td>{{ event.date }}</td>
                                     
-                                            <td>
+                                            {% comment %} <td>
                                                 <div class="d-flex align-items-center">
                                                     <button type="button"
                                                         class="btn btn-rounded btn-outline-success">
@@ -190,7 +190,7 @@
                                                         </a>
                                                     </div>
                                                 </div>
-                                            </td>
+                                            </td> {% endcomment %}
                                             {% endfor %}
                                         </tr>
                                         

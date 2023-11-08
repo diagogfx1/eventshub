@@ -6,9 +6,13 @@ from .views import (
     EventCreateView,
     EventUpdateView,
     EventDeleteView,
+    CategoryDeleteView,
     # CategoryList,
     EventRegionListView,
-    category_list
+    category_list,
+    CategoryUpdateView,
+    RegionUpdateView,
+    RegionDeleteView,
     
     
     
@@ -29,5 +33,9 @@ urlpatterns = [
     path('view_region/', EventRegionListView.as_view(), name='view-region'),
     path('view_category/', category_list, name='view-categories'),
     path('update_event/<int:pk>/', EventUpdateView.as_view(), name='update-event'),
+    path('update_category/<int:pk>/', CategoryUpdateView.as_view(), name='update-category'),
+    path('categories/<int:pk>/delete/', CategoryDeleteView.as_view(), name='category-delete'),
+    path('update_regions/<int:pk>/', RegionUpdateView.as_view(), name='update-regions'),
+    path('regions/<int:pk>/delete/', RegionDeleteView.as_view(), name='region-delete'),
        
 ]

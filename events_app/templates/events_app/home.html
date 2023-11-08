@@ -110,7 +110,7 @@
         </div>
         <div class="nav-right-content style-01">
           <div class="btn-wrapper">
-            <a href="#" class="boxed-btn political-btn">Create Event <i class="icon-paper-plan"></i></a>
+            <a href="{% url 'login' %}" class="boxed-btn political-btn">Create Event <i class="icon-paper-plan"></i></a>
           </div>
         </div>
       </div>
@@ -208,7 +208,7 @@
     <div class="issues-around-us-section home-six">
         <div class="container">
             <div class="row">
-                {% for event in events %}
+                {% for event in events|slice:":6" %}
                 <div class="col-lg-4 col-md-6">
                     <div class="event-single-items style-02">
                         <div class="event-img" style="background-image: url({{ event.image.url }});"></div>

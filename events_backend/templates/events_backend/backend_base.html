@@ -86,8 +86,8 @@
         <div class="flapt-sidemenu-wrapper">
             <!-- Desktop Logo -->
             <div class="flapt-logo">
-                <a href="index.html"><img class="desktop-logo" src="img/core-img/logo.png" alt="Desktop Logo"> <img
-                        class="small-logo" src="img/core-img/small-logo.png" alt="Mobile Logo"></a>
+                <a href="index.html"><img class="desktop-logo" src="{% static "backend/img/core-img/logo.png" %}" alt="Desktop Logo"> <img
+                        class="small-logo" src="/backend/img/core-img/small-logo.png" alt="Mobile Logo"></a>
             </div>
 
             <!-- Side Nav -->
@@ -153,7 +153,7 @@
                 <div class="left-side-content-area d-flex align-items-center">
                     <!-- Mobile Logo -->
                     <div class="mobile-logo">
-                        <a href="index.html"><img src="img/core-img/small-logo.png" alt="Mobile Logo"></a>
+                        <a href="index.html"><img src="{% static "backend/img/core-img/small-logo.png" %}" alt="Mobile Logo"></a>
                     </div>
 
                     <!-- Triggers -->
@@ -190,7 +190,7 @@
                                         class='bx bx-world'></i></span></button>
                             <div class="dropdown-menu language-dropdown dropdown-menu-right">
                                 <div class="user-profile-area">
-                                    <a href="#" class="dropdown-item mb-15"><img src="img/core-img/f1.jpg" alt="Image">
+                                    <a href="#" class="dropdown-item mb-15"><img src="{% static "backend/img/core-img/f1.jpg" %}" alt="Image">
                                         <span>Ind</span></a>
                                     <a href="#" class="dropdown-item mb-15"><img src="img/core-img/f2.jpg" alt="Image">
                                         <span>German</span></a>
@@ -322,7 +322,7 @@
 
                         <li class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"></backendimg src="img/bg-img/person_1.jpg"
+                                aria-haspopup="true" aria-expanded="false"><img src="{% static 'backend/img/bg-img/person_1.jpg' %}"
                                     alt=""></button>
                             <div class="dropdown-menu profile dropdown-menu-right">
                                 <!-- User Profile Area -->
@@ -330,7 +330,7 @@
                                     <a href="#" class="dropdown-item"><i class="bx bx-user font-15"
                                             aria-hidden="true"></i> My profile</a>
                                     <a href="#" class="dropdown-item"><i class="bx bx-wallet font-15"
-                                            aria-hidden="true"></i> My wallet</a>
+                                            aria-hidden="true"></i> My Events</a>
                                     <a href="#" class="dropdown-item"><i class="bx bx-wrench font-15"
                                             aria-hidden="true"></i> settings</a>
                                     <a href="#" class="dropdown-item"><i class="bx bx-power-off font-15"
