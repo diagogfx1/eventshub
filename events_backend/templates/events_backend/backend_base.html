@@ -87,7 +87,7 @@
         <div class="flapt-sidemenu-wrapper">
             <!-- Desktop Logo -->
             <div class="flapt-logo">
-                <a href="index.html"><img class="desktop-logo" src="{% static "backend/img/core-img/logo.png" %}" alt="Desktop Logo"> <img
+                <a href="{% url "backend:home" %}"><img class="desktop-logo" src="{% static "backend/img/core-img/logo.png" %}" alt="Desktop Logo"> <img
                         class="small-logo" src="/backend/img/core-img/small-logo.png" alt="Mobile Logo"></a>
             </div>
 
@@ -133,10 +133,9 @@
                                         class="bx bx-user-circle"></i><span>Account</span> <i
                                         class="fa fa-angle-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                    <li><a href="forget-password.html">Forget Password</a></li>
-                                    <li><a href="lock-screen.html">Lock Screen</a></li>
+                                    <li><a href="#">Profile</a></li>
+                                    <li><a href="#">Change Password</a></li>
+                                    <li><a href="#">Log-out</a></li>
                                 </ul>
                             </li>
                            
@@ -185,7 +184,7 @@
                     <!-- Top Bar Nav -->
                     <ul class="right-side-content d-flex align-items-center">
 
-                        <li class="nav-item dropdown">
+                        {% comment %} <li class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false"><span><i
                                         class='bx bx-world'></i></span></button>
@@ -201,7 +200,7 @@
                                         <span>Russian</span></a>
                                 </div>
                             </div>
-                        </li>
+                        </li> {% endcomment %}
 
                         <li class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
@@ -330,7 +329,7 @@
                                 <div class="user-profile-area">
                                     <a href="#" class="dropdown-item"><i class="bx bx-user font-15"
                                             aria-hidden="true"></i> My profile</a>
-                                    <a href="#" class="dropdown-item"><i class="bx bx-wallet font-15"
+                                    <a href="{% url 'backend:view-events' %}" class="dropdown-item"><i class="bx bx-wallet font-15"
                                             aria-hidden="true"></i> My Events</a>
                                     <a href="#" class="dropdown-item"><i class="bx bx-wrench font-15"
                                             aria-hidden="true"></i> settings</a>
