@@ -1,11 +1,11 @@
 {% extends "events_app/base.html" %}
 {% load static %}
 
-{% block content %} 
+{% block content %}
 
-{% load crispy_forms_tags %}         
+{% load crispy_forms_tags %}
 
-<!--Login--> 
+<!--Login-->
 <div class="container py-5">
     <h1>Login</h1>
     <form method="POST">
@@ -13,7 +13,7 @@
       {{ login_form|crispy }}
       <button class="btn btn-primary" type="submit">Login</button>
     </form>
-    <p class="text-center">Don't have an account? <a href="/register">Create an account</a>.</p>
+    <p class="text-center">Don't have an account? <a href="/events_backend/register">Create an account</a>.</p>
   </div>
 
 {% endblock %}

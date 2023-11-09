@@ -13,6 +13,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import NewUserForm
 from django.contrib import messages
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 
@@ -35,26 +36,20 @@ class EventListView(LoginRequiredMixin, ListView):
     context_object_name = 'events'
     paginate_by = 10
     
+    def get_queryset(self):
+        # Filter events based on the logged-in user
+        return Event.objects.filter(user=self.request.user).order_by('-date')
+    
 # All Event List
 class AllEvents(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'events_backend/all_events.html'
     context_object_name = 'events'
     paginate_by = 10
-
-# Event Create View
-# class EventCreateView(LoginRequiredMixin, CreateView):
-#     model = Event
-#     template_name = 'events_backend/event_form.html'
-#     fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
-#     def get_form(self, form_class=None):
-#         form = super(EventCreateView, self).get_form(form_class)
-#         helper = FormHelper()
-#         helper.form_method = 'post'
-#         helper.add_input(Submit('submit', 'Create Event'))
-#         form.helper = helper
-#         return form
-#     success_url = reverse_lazy('backend:view-events')  # Replace with the actual view name
+    
+    def get_queryset(self):
+        # Filter events based on the logged-in user
+        return Event.objects.filter(user=self.request.user).order_by('-date')
 
 
 class EventCreateView(LoginRequiredMixin, CreateView):
@@ -143,6 +138,7 @@ def create_region(request):
     else:
         form = EventRegionForm()
     return render(request, 'events_backend/region_form.html', {'form': form})
+
 
 
 #create Category

@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-
+from django.forms.widgets import DateInput, TimeInput
 
 
 #create events
@@ -13,6 +13,9 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
+    widgets = {
+        'date': forms.DateInput(attrs={'type': 'date'}),
+    }
 
 #Region form
 class EventRegionForm(forms.ModelForm):

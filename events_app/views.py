@@ -7,15 +7,18 @@ from django.utils.text import slugify
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 
 # Create your views here.
+# Home Event View
 class HomeListView(ListView):
     model = Event
     template_name = 'events_app/home.html'
     context_object_name = 'events'
     paginate_by = 10
-
+# Category view on home
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = EventCategory.objects.all()
@@ -26,7 +29,32 @@ class EventListView(ListView):
     model = Event
     template_name = 'events_app/event_list.html'
     context_object_name = 'events'
-    paginate_by = 10
+    paginate_by = 32
+    ordering = ['date']
+
+    def get_queryset(self):
+        return Event.objects.all().order_by('date')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        events = context['events']
+
+        paginator = Paginator(events, self.paginate_by)
+        page = self.request.GET.get('page')
+
+        try:
+            events_paginated = paginator.page(page)
+        except PageNotAnInteger:
+            events_paginated = paginator.page(1)
+        except EmptyPage:
+            events_paginated = paginator.page(paginator.num_pages)
+
+        context['events'] = events_paginated
+        return context
+    
+    
+    
+    
 
 # Event Detail View
 class EventDetailView(DetailView):
@@ -79,48 +107,3 @@ def events_by_category(request, category_id):
         'events': events,
     }
     return render(request, 'events_app/events_by_category.html', context)
-
-# # User Registrations View
-# def register_request(request):
-# 	if request.method == "POST":
-# 		form = NewUserForm(request.POST)
-# 		if form.is_valid():
-# 			user = form.save()
-# 			login(request, user)
-# 			messages.success(request, "Registration successful." )
-# 			return redirect("event:index")
-# 		messages.error(request, "Unsuccessful registration. Invalid information.")
-# 	form = NewUserForm()
-# 	return render (request=request, template_name="events_app/register.html", context={"register_form":form})  
-
-# # User login View
-# from django.shortcuts import render, redirect
-# from django.contrib.auth import authenticate, login
-# from django.contrib.auth.forms import AuthenticationForm
-# from django.contrib import messages
-
-# def login_request(request):
-#     if request.method == "POST":
-#         form = AuthenticationForm(request, data=request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password')
-#             user = authenticate(username=username, password=password)
-#             if user is not None:
-#                 login(request, user)
-#                 messages.info(request, f"You are now logged in as {username}.")
-#                 # Redirect to the "dashboard" view within the "events_backend" namespace
-#                 return redirect("events_backend:home")
-#             else:
-#                 messages.error(request, "Invalid username or password.")
-#         else:
-#             messages.error(request, "Invalid username or password.")
-#     form = AuthenticationForm()
-#     return render(request=request, template_name="events_app/login.html", context={"login_form": form})
-
-
-# # User logout View
-# def logout_request(request):
-# 	logout(request)
-# 	messages.info(request, "You have successfully logged out.") 
-# 	return redirect("events_app:index")

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User, Group  
 
 # Create your models here.
 
@@ -32,6 +33,8 @@ class Event(models.Model):
     Region = models.ForeignKey(EventRegion, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(upload_to='event_images/', null=True, blank=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    group = models.ForeignKey(Group, on_delete=models.SET_NULL, null=True, default=1)
 
     def __str__(self):
         return self.title
