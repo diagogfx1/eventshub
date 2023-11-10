@@ -38,7 +38,7 @@ class EventListView(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         # Filter events based on the logged-in user
-        return Event.objects.filter(user=self.request.user).order_by('-date')
+        return Event.objects.filter(user=self.request.user).order_by('-created_at')
     
 # All Event List
 class AllEvents(LoginRequiredMixin, ListView):
@@ -49,7 +49,7 @@ class AllEvents(LoginRequiredMixin, ListView):
     
     def get_queryset(self):
         # Filter events based on the logged-in user
-        return Event.objects.filter(user=self.request.user).order_by('-date')
+        return Event.objects.filter(user=self.request.user).order_by('-created_at')
 
 # Crete Event View
 class EventCreateView(LoginRequiredMixin, CreateView):

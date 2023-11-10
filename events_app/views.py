@@ -18,10 +18,11 @@ class HomeListView(ListView):
     model = Event
     template_name = 'events_app/home.html'
     context_object_name = 'events'
-    paginate_by = 10
+    paginate_by = 6
+    ordering = ['-created_at']
 
     def get_queryset(self):
-        queryset = Event.objects.all()
+        queryset = Event.objects.all().order_by('-created_at')
         search_form = EventSearchForm(self.request.GET)
         if search_form.is_valid():
             query = search_form.cleaned_data.get('query')
@@ -40,11 +41,11 @@ class EventListView(ListView):
     model = Event
     template_name = 'events_app/event_list.html'
     context_object_name = 'events'
-    paginate_by = 32
-    ordering = ['date']
+    paginate_by = 9
+    ordering = ['-created_at']
 
     def get_queryset(self):
-        queryset = Event.objects.all().order_by('date')
+        queryset = Event.objects.all().order_by('-created_at')
         search_form = EventSearchForm(self.request.GET)
         if search_form.is_valid():
             query = search_form.cleaned_data.get('query')
