@@ -117,11 +117,15 @@ class NewUserForm(UserCreationForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['avatar']  # Include the fields you want to allow users to update
+        fields = ['avatar', 'first_name', 'last_name', 'phone_number', 'email']
 
     def __init__(self, *args, **kwargs):
         super(UserProfileForm, self).__init__(*args, **kwargs)
         self.fields['avatar'].widget.attrs['class'] = 'form-control'  # Add CSS classes if needed
+        self.fields['first_name'].widget.attrs['class'] = 'form-control'
+        self.fields['last_name'].widget.attrs['class'] = 'form-control'
+        self.fields['phone_number'].widget.attrs['class'] = 'form-control'
+        self.fields['email'].widget.attrs['class'] = 'form-control'
         
 # change password form      
 class CustomPasswordChangeForm(PasswordChangeForm):

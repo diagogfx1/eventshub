@@ -46,6 +46,12 @@ class Event(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='user_avatars/', null=True, blank=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True, blank=True)
 
-    def __str__(self):
-        return self.user.username
+    def save(self, *args, **kwargs):
+        if self.user.email:
+            self.email = self.user.email
+        super(UserProfile, self).save(*args, **kwargs)
