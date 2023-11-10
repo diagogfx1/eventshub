@@ -41,5 +41,7 @@ urlpatterns = [
     path("logout", views.logout_request, name= "logout"),
     path("register", views.register_request, name="register"),
     path('search/', event_search, name='event_search'),
+    path('edit_profile/', views.edit_profile, name='edit-profile'),
+    path('change_password/', views.PasswordChange.as_view(), name='change-password'),
        
 ]

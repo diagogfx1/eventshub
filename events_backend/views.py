@@ -1,19 +1,21 @@
 from django.shortcuts import render, redirect  
-from events_app.models import Event, EventCategory, EventRegion
+from events_app.models import Event, EventCategory, EventRegion,UserProfile
 from django.urls import reverse_lazy
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm, EventForm, EventSearchForm
+from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm, EventForm, EventSearchForm, UserProfileForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.auth import login, authenticate, logout 
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from .forms import NewUserForm
 from django.contrib import messages
 from django.core.exceptions import PermissionDenied
+from django.contrib.auth import update_session_auth_hash
+
 
 # Create your views here.
 
@@ -162,6 +164,7 @@ def register_request(request):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
+            UserProfile.objects.create(user=user)
             login(request, user)
             messages.success(request, "Registration successful.")
             return redirect("backend:login")
@@ -217,4 +220,26 @@ def event_search(request):
 
     return render(request, 'events_backend/event_search_results.html', {'form': form, 'events': events})
     
+# Edit User Profile View 
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        if form.is_valid():
+            form.save()
+            return redirect('backend:home')  # Redirect to the user's profile page
+    else:
+        form = UserProfileForm(instance=request.user.userprofile)
     
+    return render(request, 'events_backend/edit_profile.html', {'form': form})
+
+
+# Change password view
+class PasswordChange(PasswordChangeView):
+    template_name = 'events_backend/change_password.html'
+    success_url = reverse_lazy('backend:home')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        update_session_auth_hash(self.request, self.user)
+        return response

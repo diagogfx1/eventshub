@@ -133,9 +133,9 @@
                                         class="bx bx-user-circle"></i><span>Account</span> <i
                                         class="fa fa-angle-right"></i></a>
                                 <ul class="treeview-menu">
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="#">Change Password</a></li>
-                                    <li><a href="#">Log-out</a></li>
+                                    <li><a href="{% url 'backend:edit-profile' %}">Edit Profile</a></li>
+                                    <li><a href="{% url 'backend:change-password' %}">Change Password</a></li>
+                                    <li><a href="{% url 'backend:logout' %}">Log-out</a></li>
                                 </ul>
                             </li>
                            
@@ -322,17 +322,23 @@
 
                         <li class="nav-item dropdown">
                             <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><img src="{% static 'backend/img/bg-img/person_1.jpg' %}"
-                                    alt=""></button>
+                                aria-haspopup="true" aria-expanded="false">
+                                {% if user.userprofile.avatar %}
+                                    <img src="{{ user.userprofile.avatar.url }}" alt="">
+                                {% else %}
+                                    <img src="{% static 'backend/img/bg-img/person_1.jpg' %}" alt="">
+                                {% endif %}
+                            </button>
+                            
                             <div class="dropdown-menu profile dropdown-menu-right">
                                 <!-- User Profile Area -->
                                 <div class="user-profile-area">
                                     <a href="#" class="dropdown-item"><i class="bx bx-user font-15"
-                                            aria-hidden="true"></i> My profile</a>
+                                            aria-hidden="true"></i> {{user | capfirst }}</a>
+                                    <a href="{% url 'backend:edit-profile' %}" class="dropdown-item"><i class="bx bx-wrench font-15"
+                                            aria-hidden="true"></i> Edit Profile</a>
                                     <a href="{% url 'backend:view-events' %}" class="dropdown-item"><i class="bx bx-wallet font-15"
-                                            aria-hidden="true"></i> My Events</a>
-                                    <a href="#" class="dropdown-item"><i class="bx bx-wrench font-15"
-                                            aria-hidden="true"></i> settings</a>
+                                                aria-hidden="true"></i> My Events</a>
                                     <a href="{% url 'backend:logout' %}" class="dropdown-item"><i class="bx bx-power-off font-15"
                                             aria-hidden="true"></i> Sign-out</a>
                                 </div>

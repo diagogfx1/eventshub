@@ -41,5 +41,11 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to='user_avatars/', null=True, blank=True)
 
-
+    def __str__(self):
+        return self.user.username

@@ -1,7 +1,7 @@
 # forms.py
 from django import forms
-from events_app.models import Event, EventCategory, EventRegion
-from django.contrib.auth.forms import UserCreationForm
+from events_app.models import Event, EventCategory, EventRegion, UserProfile
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
@@ -113,7 +113,31 @@ class NewUserForm(UserCreationForm):
             # return HttpResponseRedirect(reverse('backend:login'))  # Replace 'login' with your login URL name
         return user
     
+# edit Profile form
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['avatar']  # Include the fields you want to allow users to update
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['avatar'].widget.attrs['class'] = 'form-control'  # Add CSS classes if needed
+        
+# change password form      
+class CustomPasswordChangeForm(PasswordChangeForm):
+    class Meta:
+        model = User()  # Use the user model you're using in your project
+
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+
+        # You can add custom field attributes or labels if needed. For example:
+        self.fields['old_password'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Old Password'})
+        self.fields['new_password1'].widget.attrs.update({'class': 'form-control', 'placeholder': 'New Password'})
+        self.fields['new_password2'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Confirm New Password'})
+    
     
 #Search form
 class EventSearchForm(forms.Form):
     query = forms.CharField(label='Search', max_length=100, required=False)
+    

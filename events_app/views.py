@@ -139,3 +139,6 @@ def event_search(request):
         events = Event.objects.filter(title__icontains=query)
 
     return render(request, 'events_app/event_search_results.html', {'form': form, 'events': events})
+
+
+
