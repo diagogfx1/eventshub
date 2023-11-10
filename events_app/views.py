@@ -3,7 +3,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from .models import EventCategory, EventRegion, Event
 from django.utils.text import slugify
-# from .forms import NewUserForm
+from django import forms
+from .forms import EventSearchForm
 from django.contrib.auth import login, authenticate, logout 
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -18,10 +19,20 @@ class HomeListView(ListView):
     template_name = 'events_app/home.html'
     context_object_name = 'events'
     paginate_by = 10
-# Category view on home
+
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        search_form = EventSearchForm(self.request.GET)
+        if search_form.is_valid():
+            query = search_form.cleaned_data.get('query')
+            if query:
+                queryset = queryset.filter(title__icontains=query) | queryset.filter(description__icontains=query)
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = EventCategory.objects.all()
+        context['search_form'] = EventSearchForm(self.request.GET)
         return context
 
 # Event List View
@@ -33,7 +44,13 @@ class EventListView(ListView):
     ordering = ['date']
 
     def get_queryset(self):
-        return Event.objects.all().order_by('date')
+        queryset = Event.objects.all().order_by('date')
+        search_form = EventSearchForm(self.request.GET)
+        if search_form.is_valid():
+            query = search_form.cleaned_data.get('query')
+            if query:
+                queryset = queryset.filter(title__icontains=query) | queryset.filter(description__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -50,6 +67,7 @@ class EventListView(ListView):
             events_paginated = paginator.page(paginator.num_pages)
 
         context['events'] = events_paginated
+        context['search_form'] = EventSearchForm(self.request.GET)
         return context
     
     
@@ -107,3 +125,16 @@ def events_by_category(request, category_id):
         'events': events,
     }
     return render(request, 'events_app/events_by_category.html', context)
+
+
+# Event Search View
+def event_search(request):
+    form = EventSearchForm(request.GET)
+    events = []
+
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        # Customize the search criteria based on your requirements
+        events = Event.objects.filter(title__icontains=query)
+
+    return render(request, 'events_app/event_search_results.html', {'form': form, 'events': events})

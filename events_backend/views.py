@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm, EventForm
+from .forms import EventRegionForm, EventCategoryForm, EventUpdateForm, CategoryUpdateForm, RegionUpdateForm, EventForm, EventSearchForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import login, authenticate, logout 
@@ -51,7 +51,7 @@ class AllEvents(LoginRequiredMixin, ListView):
         # Filter events based on the logged-in user
         return Event.objects.filter(user=self.request.user).order_by('-date')
 
-
+# Crete Event View
 class EventCreateView(LoginRequiredMixin, CreateView):
     model = Event
     template_name = 'events_backend/event_form.html'
@@ -59,7 +59,7 @@ class EventCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('backend:view-events')
 
     def form_valid(self, form):
-        form.instance.user = self.request.user  # Assuming you have a user field in your model
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
@@ -157,16 +157,19 @@ def create_category(request):
 
 # User Registrations View
 def register_request(request):
-	if request.method == "POST":
-		form = NewUserForm(request.POST)
-		if form.is_valid():
-			user = form.save()
-			login(request, user)
-			messages.success(request, "Registration successful." )
-			return redirect("backend:login")
-		messages.error(request, "Unsuccessful registration. Invalid information.")
-	form = NewUserForm()
-	return render (request=request, template_name="events_app/register.html", context={"register_form":form})
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("backend:login")
+        messages.error(request, "Unsuccessful registration. Invalid information.")
+    else:
+        form = NewUserForm()
+
+    return render(request=request, template_name="events_app/register.html", context={"register_form": form})
+
 
 # User login View
 def login_request(request):
@@ -179,13 +182,17 @@ def login_request(request):
             if user is not None:
                 login(request, user)
                 messages.info(request, f"You are now logged in as {username}.")
-                # Redirect to the "dashboard" view within the "events_backend" namespace
                 return redirect("events_backend:home")
             else:
                 messages.error(request, "Invalid username or password.")
         else:
             messages.error(request, "Invalid username or password.")
-    form = AuthenticationForm()
+    else:
+        # Set placeholders for the login form
+        form = AuthenticationForm()
+        form.fields['username'].widget.attrs['placeholder'] = 'Enter your username'
+        form.fields['password'].widget.attrs['placeholder'] = 'Enter your password'
+
     return render(request=request, template_name="events_app/login.html", context={"login_form": form})
 
 
@@ -195,5 +202,18 @@ def logout_request(request):
 	messages.info(request, "You have successfully logged out.")
   
 	return redirect("index")
+
+
+# Event Search View
+def event_search(request):
+    form = EventSearchForm(request.GET)
+    events = []
+
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        # Customize the search criteria based on your requirements
+        events = Event.objects.filter(title__icontains=query)
+
+    return render(request, 'events_backend/event_search_results.html', {'form': form, 'events': events})
     
     

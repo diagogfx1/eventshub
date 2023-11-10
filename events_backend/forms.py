@@ -13,9 +13,20 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
-    widgets = {
-        'date': forms.DateInput(attrs={'type': 'date'}),
-    }
+
+    def __init__(self, *args, **kwargs):
+        super(EventForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs['placeholder'] = 'Enter event title'
+        self.fields['description'].widget.attrs['placeholder'] = 'Enter event description'
+        self.fields['location'].widget.attrs['placeholder'] = 'Enter event location'
+        self.fields['date'].widget.attrs['placeholder'] = 'Enter event date (YYYY-MM-DD HH:MM:SS)'
+        self.fields['registration_link'].widget.attrs['placeholder'] = 'Enter registration link'
+
+        # Set fields as required, excluding registration_required
+        for field_name in self.fields:
+            if field_name not in ['registration_required', 'registration_link']:
+                self.fields[field_name].required = True
+   
 
 #Region form
 class EventRegionForm(forms.ModelForm):
@@ -36,6 +47,7 @@ class EventUpdateForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
+    
 
     
 #update Category form
@@ -69,3 +81,8 @@ class NewUserForm(UserCreationForm):
             # Redirect the user to the login page after successful submission
             # return HttpResponseRedirect(reverse('backend:login'))  # Replace 'login' with your login URL name
         return user
+    
+    
+#Search form
+class EventSearchForm(forms.Form):
+    query = forms.CharField(label='Search', max_length=100, required=False)

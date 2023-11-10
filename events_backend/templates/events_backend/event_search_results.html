@@ -1,0 +1,17 @@
+<!-- templates/events_app/event_search_results.html -->
+<h2>Event Search</h2>
+<form method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% if events %}
+    <h3>Search Results:</h3>
+    <ul>
+        {% for event in events %}
+            <li>{{ event.title }}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}

@@ -34,9 +34,11 @@
                         <tr>
                           <th scope="row">
                             <button type="button" class="btn btn-sm btn-secondary btn-icon rounded-pill">
-                              <span class="btn-inner--icon"><i class="fa fa-book"></i></span>
-                              <span class="btn-inner--text">{{ event.title }}</span>
-                            </button>
+                              <a href="{% url 'event-detail' event.pk %}" style="text-decoration: none; color: inherit;">
+                                  <span class="btn-inner--icon"><i class="fa fa-book"></i></span>
+                                  <span class="btn-inner--text">{{ event.title }}</span>
+                              </a>
+                          </button>
                           </th>
                           <td class="order">
                             <span class="d-block font-13">{{ event.category }}</span>

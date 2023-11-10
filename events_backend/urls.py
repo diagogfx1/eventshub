@@ -13,7 +13,7 @@ from .views import (
     CategoryUpdateView,
     RegionUpdateView,
     RegionDeleteView,
-    
+    event_search,
     
     
     
@@ -40,5 +40,6 @@ urlpatterns = [
     path("login", views.login_request, name="login"),
     path("logout", views.logout_request, name= "logout"),
     path("register", views.register_request, name="register"),
+    path('search/', event_search, name='event_search'),
        
 ]

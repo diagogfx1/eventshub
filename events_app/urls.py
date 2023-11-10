@@ -9,6 +9,7 @@ from .views import (
     EventCategoryListView,
     EventRegionListView,
     HomeListView,
+    event_search,
     
 )
 
@@ -23,7 +24,7 @@ urlpatterns = [
     path('event-regions/', EventRegionListView.as_view(), name='event-region-list'),
     path('contact/', views.contact, name='contact'),
     path('event-categories/<int:category_id>/', views.events_by_category, name='events_by_category'),
-    # path("register", views.register_request, name="register"),
+    path('search/', event_search, name='event_search'),
     
     
 ]

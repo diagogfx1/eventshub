@@ -1,20 +1,23 @@
-# from django import forms
-# from django.contrib.auth.forms import UserCreationForm
-# from django.contrib.auth.models import User
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
+from django import forms
+from crispy_forms.layout import Layout, Submit, Row, Column
 
 
 # # Create your forms here.
 
-# class NewUserForm(UserCreationForm):
-# 	email = forms.EmailField(required=True)
+#Search form
 
-# 	class Meta:
-# 		model = User
-# 		fields = ("username", "email", "password1", "password2")
+class EventSearchForm(forms.Form):
+    query = forms.CharField(label='', max_length=100, required=False)
 
-# 	def save(self, commit=True):
-# 		user = super(NewUserForm, self).save(commit=False)
-# 		user.email = self.cleaned_data['email']
-# 		if commit:
-# 			user.save()
-# 		return user
+    def __init__(self, *args, **kwargs):
+        super(EventSearchForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_method = 'get'
+        self.helper.layout = Layout(
+            Row(
+                Column('query', css_class='col-md-8 mb-9 '),
+                Column(Submit('submit', 'Search', css_class='btn btn-primary col-md-8 text-center text-center')),
+            )
+        )
