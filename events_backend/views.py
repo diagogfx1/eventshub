@@ -34,7 +34,7 @@ class EventListView(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'events_backend/dashboard.html'
     context_object_name = 'events'
-    paginate_by = 10
+    paginate_by = 30
     
     def get_queryset(self):
         # Filter events based on the logged-in user
@@ -115,6 +115,7 @@ class EventRegionListView(LoginRequiredMixin, ListView):
     model = EventRegion
     template_name = 'events_backend/region_list.html'
     context_object_name = 'regions'
+    
     
 
 # Event Category List View

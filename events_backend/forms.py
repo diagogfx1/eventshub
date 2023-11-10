@@ -17,11 +17,20 @@ class EventForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
         self.fields['title'].widget.attrs['placeholder'] = 'Enter event title'
-        self.fields['description'].widget.attrs['placeholder'] = 'Enter event description'
+        
+        # Increase space for description by using a Textarea widget with a fixed height
+        self.fields['description'].widget = forms.Textarea(attrs={'placeholder': 'Enter event description', 'style': 'height: 200px;'})
+
         self.fields['location'].widget.attrs['placeholder'] = 'Enter event location'
-        self.fields['date'].widget.attrs['placeholder'] = 'Enter event date (YYYY-MM-DD HH:MM:SS)'
+        
+        # Use DateTimeInput widget for the 'date' field to add a date and time picker
+        self.fields['date'].widget = forms.DateTimeInput(attrs={'placeholder': 'Enter event date and time (YYYY-MM-DD HH:MM:SS)', 'type': 'datetime-local'})
+        
         self.fields['registration_link'].widget.attrs['placeholder'] = 'Enter registration link'
 
+        # Rename the 'date' field label to 'Date & Time'
+        self.fields['date'].label = 'Date & Time'
+        
         # Set fields as required, excluding registration_required
         for field_name in self.fields:
             if field_name not in ['registration_required', 'registration_link']:
@@ -47,6 +56,28 @@ class EventUpdateForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ['title', 'description', 'location', 'date', 'registration_required', 'registration_link', 'category', 'Region', 'image', 'status']
+    
+    def __init__(self, *args, **kwargs):
+        super(EventUpdateForm, self).__init__(*args, **kwargs)
+        self.fields['title'].widget.attrs['placeholder'] = 'Enter event title'
+        
+        # Increase space for description by using a Textarea widget with a fixed height
+        self.fields['description'].widget = forms.Textarea(attrs={'placeholder': 'Enter event description', 'style': 'height: 200px;'})
+
+        self.fields['location'].widget.attrs['placeholder'] = 'Enter event location'
+        
+        # Use DateTimeInput widget for the 'date' field to add a date and time picker
+        self.fields['date'].widget = forms.DateTimeInput(attrs={'placeholder': 'Enter event date and time (YYYY-MM-DD HH:MM:SS)', 'type': 'datetime-local'})
+        
+        self.fields['registration_link'].widget.attrs['placeholder'] = 'Enter registration link'
+
+        # Rename the 'date' field label to 'Date & Time'
+        self.fields['date'].label = 'Date & Time'
+        
+        # Set fields as required, excluding registration_required
+        for field_name in self.fields:
+            if field_name not in ['registration_required', 'registration_link']:
+                self.fields[field_name].required = True
     
 
     

@@ -18,6 +18,6 @@ class EventSearchForm(forms.Form):
         self.helper.layout = Layout(
             Row(
                 Column('query', css_class='col-md-8 mb-9 '),
-                Column(Submit('submit', 'Search', css_class='btn btn-primary col-md-8 text-center text-center')),
+                Column(Submit('submit', 'Search', css_class='btn btn-danger col-md-8 text-center text-center')),
             )
         )
