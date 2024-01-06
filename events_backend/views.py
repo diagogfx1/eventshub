@@ -124,8 +124,10 @@ class EventRegionListView(LoginRequiredMixin, ListView):
 @login_required
 def category_list(request):
     categories = EventCategory.objects.all()
+    category_count = categories.count()  # This will give you the count of categories
     context = {
         'categorys': categories,
+        'category_count': category_count,  # Add this to your context
     }
     return render(request, 'events_backend/category_list.html', context)
 
