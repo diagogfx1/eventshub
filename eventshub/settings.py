@@ -26,8 +26,11 @@ SECRET_KEY = 'django-insecure-ki#-rkyx+ba@e52@l^e20oc%kv%yy$dyb&gb&$1e!8&^@o8dct
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+if DEBUG:
+    # Disable collectstatic for development
+    INSTALLED_APPS.remove('django.contrib.staticfiles')
 
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
